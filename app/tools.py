@@ -79,7 +79,6 @@ def get_lecture_summary(lecture: int) -> str:
         return f"第{lecture}回の要点はまだありません。用意されている回: {', '.join(available)}"
     return path.read_text(encoding="utf-8")
 
-
 def make_quiz(lecture: int) -> str:
     """指定した回の用語から一つを選び、確認問題と答えを出す。
 
