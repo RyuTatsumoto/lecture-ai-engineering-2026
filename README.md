@@ -30,6 +30,22 @@ uv run pytest -q
 uv run python -m app.ask "LoRAとは何ですか？"
 ```
 
+会話履歴を保ったまま続けて質問するには、対話モードを使います。会話は実行中のプロセス内だけ保持され、`終了`、`exit`、または `quit` で終了します。
+APIの応答後には、応答時間と入力・出力トークン数が表示されます。
+
+```bash
+uv run python -m app.ask --chat
+uv run python -m app.ask --chat "LoRAとは何ですか？"  # 最初の質問を指定
+```
+
+2つのモデルに同じ質問を送り、応答時間とトークン数を比較する実験には、質問をコマンドライン引数で指定します。
+
+```bash
+uv run python -m app.compare_models "LoRAとは何ですか？"
+```
+
+出力トークン数を応答時間で割った値（出力トークン/秒）も表示します。これはネットワーク遅延などを含む応答時間から求めた概算値で、モデル内部の生成速度そのものではありません。
+
 詳しい手順は [lectures/01/problem.md](lectures/01/problem.md) を見てください。
 
 ## 第5回：講義資料を検索する
@@ -62,6 +78,7 @@ uv run python -m scripts.build_rag_index
 app/
   config.py      モデル名とAPIキーの読み込み
   ask.py         第1回：LLMに質問する
+  compare_models.py  第1回：2つのモデルの応答時間とトークン数を比較する
   tools.py       第3回：エージェントのツール（用語集の検索など）
   agent.py       第3回：Pydantic AI の学習支援エージェント（第5回：講義資料の検索を使う）
   judge.py       第4回：評価セットを LLM に採点させ、人のラベルとの一致率を出す

@@ -29,7 +29,7 @@ from pydantic_ai.messages import ToolCallPart, ToolReturnPart
 from pydantic_ai.models.google import GoogleModel
 from pydantic_ai.models.test import TestModel
 from pydantic_ai.providers.google import GoogleProvider
-
+git 
 from app import tools
 from app.retrieval import run_full_context
 from app.config import MODEL, api_error_message, get_api_key
@@ -79,7 +79,10 @@ FULL_CONTEXT_PROMPT = "<資料>\n{materials}\n</資料>\n\n質問: {question}"
 
 # モデルは実行時に渡す（テストではAPIを呼ばない TestModel に差し替えるため）
 agent = Agent(instructions=INSTRUCTIONS)
+agent.tool_plain(tools.search_glossary)
+agent.tool_plain(tools.get_lecture_summary)
 agent.tool_plain(tools.search_materials)
+agent.tool_plain(tools.make_quiz)
 
 # TODO(第3回 演習): tools.py に make_quiz を作り、ここで登録しよう
 
