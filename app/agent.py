@@ -29,7 +29,7 @@ from pydantic_ai.messages import ToolCallPart, ToolReturnPart
 from pydantic_ai.models.google import GoogleModel
 from pydantic_ai.models.test import TestModel
 from pydantic_ai.providers.google import GoogleProvider
-git 
+
 from app import tools
 from app.retrieval import run_full_context
 from app.config import MODEL, api_error_message, get_api_key
